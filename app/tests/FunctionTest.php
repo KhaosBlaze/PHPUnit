@@ -1,7 +1,6 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-require '/app/public/functions.php';
 
 class FunctionTest extends TestCase
 {
