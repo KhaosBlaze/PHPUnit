@@ -1,12 +1,13 @@
 <?php
 
+use Classes\User;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
     public function testReturnsFullName()
     {
-        $user = new ser;
+        $user = new User;
         $user->first_name = "Teresa";
         $user->surname = "Twelve";
 

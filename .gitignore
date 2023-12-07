@@ -1,3 +1,7 @@
 /.vscode
 .phpunit.cache/
 .phpunit.result.cache
+vendor/
+var/
+.cache/
+composer.lock
