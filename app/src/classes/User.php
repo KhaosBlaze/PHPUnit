@@ -65,4 +65,16 @@ class User
     {
         return $this->mailer->sendMessage($this->email, $message);
     }
+
+    /**
+     * Send $message to the User->$email via Mailer::send
+     * 
+     * @param string $message The Message
+     * 
+     * @return boolean
+     */
+    public function notifyStatic(string $message)
+    {
+        return Mailer::send($this->email, $message);
+    }
 }

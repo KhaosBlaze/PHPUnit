@@ -68,4 +68,33 @@ class UserTest extends TestCase
         $this->expectExceptionMessage("No Email Address");
         $user->notify("Hello");
     }
+
+    public function testNotifyStaticReturnsTrue()
+    {
+        $user = new User;
+        $user->email = 'test@domain.tld';
+
+        $this->assertTrue($user->notifyStatic('Hello!'));
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testNotifyStaticAliasReturnsTrue()
+    {
+        $user = new User;
+        $user->email = 'test@domain.tld';
+
+        $mock = Mockery::mock('alias:\Classes\Mailer');
+
+        $mock->shouldReceive('send')
+            ->once()
+            ->with($user->email, 'Hello!')
+            ->andReturn(true);
+
+        $user->setMailer($mock);
+
+        $this->assertTrue($user->notifyStatic('Hello!'));
+    }
 }
